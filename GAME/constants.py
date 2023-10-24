@@ -1,5 +1,5 @@
-WIDTH = 1920
-HEIGHT = 1080
+WIDTH = 1000
+HEIGHT = 800
 
 
 white = (255, 255, 255)
