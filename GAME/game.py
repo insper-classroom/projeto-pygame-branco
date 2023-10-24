@@ -32,9 +32,7 @@ class game:
     # state ----------------------------- #
     
   def game_loop(self):
-    while self.state['running']:
-      self.state['running']
-      draw
+    pass
 
 class events:
   
@@ -52,17 +50,6 @@ class events:
         return False
           # ----- #
     return True
-
-
-class draw:
-  def __init__(self):
-    pass
-  
-  screen = game().screen
-  
-  screen.fill(white)
-  
-  pygame.display.update()
 
 
 
