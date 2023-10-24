@@ -1,11 +1,15 @@
 import pygame
-from game import *
 
 class events:
   
-  def __init__(self):
-    pass
-  
+  def __init__(self, state):
+    
+    # keys being pressed
+    self.keys = pygame.key.get_pressed()
+    
+    # 
+    self.state = state
+
   
   def all_events(self):
     

@@ -1,6 +1,7 @@
 import pygame
 from constants import *
-
+from draw import draw
+from events import *
 
 class game:
   def __init__(self):
@@ -15,8 +16,6 @@ class game:
     # clock
     self.clock = pygame.time.Clock()
     
-    
-    
     # assets ---------------------------- #
     self.assets = {
       
@@ -26,13 +25,26 @@ class game:
     
     # state ----------------------------- #
     self.state = {
-    # if running == true, the game will run
     'running': True
     }
     # state ----------------------------- #
     
   def game_loop(self):
-    pass
+    
+    # import class draw
+    draw_win = draw(self.assets)
+    
+    # main loop
+    while self.state['running']:
+      
+      # import class events
+      loop = events(self.state)
+      
+      # draw window
+      draw_win.draw_game(self.screen)
+      
+      # while running == True, loop runs
+      self.state['running'] = loop.all_events()
   
   
 # run the game
