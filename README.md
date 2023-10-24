@@ -1,1 +1,4 @@
-# a definir 
+# DESENVOLVIDO POR #
+
+- Luise Bastos 
+- Luigi Lopes
