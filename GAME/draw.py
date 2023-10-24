@@ -10,8 +10,10 @@ class draw:
   
   def draw_game(self, screen):
   
-    screen.fill(white)
-  
+    screen.fill(black)
+
+    screen.blit(self.assets['background_sr'], (0, 0))
+    
     pygame.display.update()
     
   
