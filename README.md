@@ -1,1 +1,5 @@
-# a definir luise imagem 
+# DESENVOLVIDO POR #
+
+- Luise Bastos 
+- Luigi Lopes
+
