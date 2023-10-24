@@ -18,7 +18,7 @@ class game:
     
     # assets ---------------------------- #
     self.assets = {
-      'background_sr': pygame.transform.scale(pygame.image.load('../assets/fundo_shootingrange.png'), (1280, 720)),
+      'background_sr': pygame.transform.scale(pygame.image.load('assets/fundo_shootingrange.png'), (1280, 720)),
   
     }
     # assets ---------------------------- #
