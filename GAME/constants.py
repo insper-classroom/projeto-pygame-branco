@@ -1,7 +1,6 @@
 WIDTH = 1920
 HEIGHT = 1080
 
-
 white = (255, 255, 255)
 black = (0, 0, 0)
 
