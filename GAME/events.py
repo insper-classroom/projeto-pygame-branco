@@ -7,7 +7,7 @@ class events:
     # keys being pressed
     self.keys = pygame.key.get_pressed()
     
-    # 
+    # dic with state of things
     self.state = state
 
   
@@ -15,9 +15,9 @@ class events:
     
     # all events
     for event in pygame.event.get():  
-      
       # if player kills game 
-      if event.type == pygame.QUIT:
-        return False
+      if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_ESCAPE:
+          return False
           # ----- #
     return True

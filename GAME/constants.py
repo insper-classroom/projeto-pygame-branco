@@ -1,5 +1,3 @@
-WIDTH = 1280
-HEIGHT = 720
 
 white = (255, 255, 255)
 black = (0, 0, 0)

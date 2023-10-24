@@ -6,9 +6,9 @@ from events import *
 class game:
   def __init__(self):
     pygame.init()
-    
-    # screen size
-    self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+  # Inicializa a tela em tela cheia
+    self.screen = pygame.display.set_mode((1696, 1304))
     
     # game name
     pygame.display.set_caption('alpha')
@@ -18,8 +18,8 @@ class game:
     
     # assets ---------------------------- #
     self.assets = {
-      'background_sr': pygame.transform.scale(pygame.image.load('assets/fundo_shootingrange.png'), (1280, 720)),
-  
+      'background_sr': pygame.transform.scale(pygame.image.load('assets/fundo_shootingrange.png'), (1696, 946)),
+      'pillars': pygame.transform.scale(pygame.image.load('assets/shooting_range.png'), (1696, 946)),
     }
     # assets ---------------------------- #
     

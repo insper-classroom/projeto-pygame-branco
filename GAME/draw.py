@@ -13,7 +13,7 @@ class draw:
     screen.fill(black)
 
     screen.blit(self.assets['background_sr'], (0, 0))
-    
+    screen.blit(self.assets['pillars'], (0, 0))
     pygame.display.update()
     
   
