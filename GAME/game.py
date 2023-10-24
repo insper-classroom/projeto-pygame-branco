@@ -6,9 +6,15 @@ from events import *
 class game:
   def __init__(self):
     pygame.init()
+    
+    pygame.mouse.set_visible(False)
+    
+    # gets the user resolution
+    screen_info = pygame.display.Info()
+    screen_w, screen_h = screen_info.current_w, screen_info.current_h
 
-  # Inicializa a tela em tela cheia
-    self.screen = pygame.display.set_mode((1696, 1304))
+    # Inicializa a tela em tela cheia
+    self.screen = pygame.display.set_mode((screen_w, screen_h), pygame.FULLSCREEN)
     
     # game name
     pygame.display.set_caption('alpha')
@@ -18,22 +24,39 @@ class game:
     
     # assets ---------------------------- #
     self.assets = {
-      'background_sr': pygame.transform.scale(pygame.image.load('assets/fundo_shootingrange.png'), (1696, 946)),
-      'pillars': pygame.transform.scale(pygame.image.load('assets/shooting_range.png'), (1696, 946)),
+      'background_sr': pygame.transform.scale(pygame.image.load('assets/fundo_shootingrange.png'), (screen_w + 100, screen_h + 155)),
+      'pillars_sr': pygame.transform.scale(pygame.image.load('assets/shooting_range.png'), (screen_w + 100, screen_h - 200)),
+      'box_sr': pygame.transform.scale(pygame.image.load('assets/box.png'), (screen_w + 100, 179 + 50)),
+      'cars_sr': pygame.transform.scale(pygame.image.load('assets/cars.png'), (screen_w, screen_h - 100)),
+      'props_sr': pygame.transform.scale(pygame.image.load('assets/props.png'), (screen_w * 0.41, (screen_h - 100) * 0.2)),
+      'crosshair': pygame.image.load('assets/crosshair.png'),
+      'button_off': pygame.image.load('assets/botao_off.png'),
+      'button_on': pygame.image.load('assets/botao_on.png'),
+      'press_w': pygame.image.load('assets/press_w.png'),
+      'button': None,
+      'screen_w': screen_w,
+      'screen_h': screen_h,
     }
     # assets ---------------------------- #
     
     
     # state ----------------------------- #
     self.state = {
-    'running': True
+      
+    # if running == True, game runs
+    'running': True,
+    
+    # mouse positioning
+    'mouse_x': screen_w // 2,
+    'mouse_y': screen_h // 2,
+    
     }
     # state ----------------------------- #
     
   def game_loop(self):
     
     # import class draw
-    draw_win = draw(self.assets)
+    draw_win = draw(self.assets, self.state)
     
     # main loop
     while self.state['running']:
@@ -42,7 +65,7 @@ class game:
       loop = events(self.state)
       
       # draw window
-      draw_win.draw_game(self.screen)
+      draw_win.draw_sr(self.screen)
       
       # while running == True, loop runs
       self.state['running'] = loop.all_events()
