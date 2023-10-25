@@ -10,19 +10,22 @@ class game:
     pygame.mouse.set_visible(False)
     
     # gets the user resolution
-    screen_info = pygame.display.Info()
-    screen_w, screen_h = screen_info.current_w, screen_info.current_h
+    screen_info = pygame.display.Info() 
+    screen_w, screen_h = screen_info.current_w, screen_info.current_h 
 
     # Inicializa a tela em tela cheia
     self.screen = pygame.display.set_mode((screen_w, screen_h), pygame.FULLSCREEN)
     
     # game name
-    pygame.display.set_caption('alpha')
+    pygame.display.set_caption('mira vesga')
     
     # clock
     self.clock = pygame.time.Clock()
     
     # assets ---------------------------- #
+    
+    target = pygame.transform.scale(pygame.image.load('assets/alvo.png'), (55, 77))
+    
     self.assets = {
       'background_sr': pygame.transform.scale(pygame.image.load('assets/fundo_shootingrange.png'), (screen_w + 100, screen_h + 155)),
       'pillars_sr': pygame.transform.scale(pygame.image.load('assets/shooting_range.png'), (screen_w + 100, screen_h - 200)),
@@ -32,8 +35,21 @@ class game:
       'crosshair': pygame.image.load('assets/crosshair.png'),
       'button_off': pygame.image.load('assets/botao_off.png'),
       'button_on': pygame.image.load('assets/botao_on.png'),
-      'press_w': pygame.image.load('assets/press_w.png'),
-      'button': None,
+      'press_w': pygame.transform.scale(pygame.image.load('assets/press_w.png'), (177, 153)),
+      'button': pygame.image.load('assets/botao_off.png'),
+      'target_sr': [
+        pygame.transform.rotate(target, -30), # 0
+        target, # 1
+        target, # 2
+        target, # 3
+        target, # 4
+        target, # 5
+        pygame.transform.rotate(target, -15), # 6
+        pygame.transform.rotate(target, 35), # 7
+        target, # 8
+        pygame.transform.rotate(target, 35), # 9 
+        pygame.transform.rotate(target, -35), # 10
+      ],
       'screen_w': screen_w,
       'screen_h': screen_h,
     }
@@ -50,6 +66,9 @@ class game:
     'mouse_x': screen_w // 2,
     'mouse_y': screen_h // 2,
     
+    # True == sr has started
+    'sr_started': False,
+    
     }
     # state ----------------------------- #
     
@@ -62,7 +81,7 @@ class game:
     while self.state['running']:
       
       # import class events
-      loop = events(self.state)
+      loop = events(self.assets, self.state, self.clock)
       
       # draw window
       draw_win.draw_sr(self.screen)
