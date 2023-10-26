@@ -51,6 +51,8 @@ class game:
         pygame.transform.rotate(target, -35), # 10
       ],
       'gun_sr': pygame.image.load('assets/pistol.png'),
+      'bang': pygame.image.load('assets/tiro.png'),
+      'bang_mark': pygame.transform.scale(pygame.image.load('assets/marca_tiro.png'), (10, 10)),
       'screen_w': screen_w,
       'screen_h': screen_h,
     }
@@ -70,6 +72,10 @@ class game:
     # True == sr has started
     'sr_started': False,
     
+    # if player shoots, fired = True
+    'fired': False,
+    'fired_mark': False,
+    'fired_pos':(0, 0)
     }
     # state ----------------------------- #
     
@@ -85,17 +91,19 @@ class game:
     while self.state['running']:
       
       # import class events
-      loop = events(self.assets, self.state, self.clock)
+      loop = events(self.assets, self.state, self.clock, draw_win.target_info)
       
       # draw window
       draw_win.draw_sr(self.screen)
       
       # while running == True, loop runs
       self.state['running'] = loop.all_events()
-  
-  
+
+
 # run the game
 
 run = game()
 
 run.game_loop()
+
+

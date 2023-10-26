@@ -11,17 +11,32 @@ class draw:
     
     self.state = state
     
+    # to keep targets changing
     self.cronometer = 0
     
+    # random number to print different targets 
     self.random_number = randint(0, 10)
     
+    # when the time changes the target changes too
     self.last_target_time = - 1
+    
+    # makes the bullet mark and smoke appear for a certain amount of time 
+    self.last_shoot_time = -1
+    
+    # position of the target (x, y, w, h)
+    self.target_info = (0, 0, 0, 0)
+     
   
   def draw_sr(self, screen):
+    
+    mouse_pos_x, mouse_pos_y = self.state['fired_pos']
     
     self.cronometer += self.clock.get_time()
     
     target_time = self.cronometer // 1000
+    
+    shoot_time = self.cronometer // 200
+    
     
     if self.last_target_time != target_time:
       self.random_number = randint(0, 10)
@@ -50,13 +65,14 @@ class draw:
     # behind pillars and cars
     if self.random_number >= 0 and self.random_number <= 4:
       screen.blit(target_list[self.random_number][0], target_list[self.random_number][1])
-    
+      self.target_info = (target_list[self.random_number][1][0], target_list[self.random_number][1][1], 55, 77)
     
     screen.blit(self.assets['pillars_sr'], (0, 0))
     
     # on top 
     if self.random_number > 4 and self.random_number <= 10:
       screen.blit(target_list[self.random_number][0], target_list[self.random_number][1])
+      self.target_info = (target_list[self.random_number][1][0], target_list[self.random_number][1][1], 55, 77)
      
     
     screen.blit(self.assets['cars_sr'], (100, 100))
@@ -68,16 +84,34 @@ class draw:
     # press w to start shootingrange
     if not self.state['sr_started']:
       screen.blit(self.assets['press_w'], (70, 500))
-      
-      
     
     # crosshair
     screen.blit(self.assets['crosshair'], (self.state['mouse_x'] - 26, self.state['mouse_y'] - 31))
     
     # gun 
-    screen.blit(self.assets['gun_sr'], (self.state['mouse_x'] + 50, self.state['mouse_y'] + 50))
+    if self.state['mouse_y'] >= 180:
+      if self.state['fired'] == True:
+        screen.blit(self.assets['bang'], (self.state['mouse_x'], self.state['mouse_y'] + 100))
+        
+      screen.blit(self.assets['gun_sr'], (self.state['mouse_x'] + 50, self.state['mouse_y'] + 150))
+    else:
+      if self.state['fired'] == True:
+        screen.blit(self.assets['bang'], (self.state['mouse_x'], 300))
+        
+      screen.blit(self.assets['gun_sr'], (self.state['mouse_x'] + 50, 330))
     
+    if self.state['fired'] == True:
+      screen.blit(self.assets['bang_mark'], (mouse_pos_x - 5, mouse_pos_y - 5))
     
+    if self.last_shoot_time != shoot_time:
+      self.state['fired'] = False
+      self.state['fired_mark'] = False
+    self.last_shoot_time = shoot_time
     pygame.display.update()
+    
+    
+  def draw_house(self, assets, state, clock): # luise 
+    pygame.display.update()
+    
     
   
