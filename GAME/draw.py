@@ -29,6 +29,14 @@ class draw:
   
   def draw_sr(self, screen):
     
+    # implementar o start do game
+    if self.state['sr_started']:
+      pass
+    
+    
+    
+    
+    
     mouse_pos_x, mouse_pos_y = self.state['fired_pos']
     
     self.cronometer += self.clock.get_time()
@@ -107,10 +115,14 @@ class draw:
       self.state['fired'] = False
       self.state['fired_mark'] = False
     self.last_shoot_time = shoot_time
+    
+    
+    # POINTS - Luise
+    
     pygame.display.update()
     
     
-  def draw_house(self, assets, state, clock): # luise 
+  def draw_house(self, assets, state, clock):  # luise
     pygame.display.update()
     
     
