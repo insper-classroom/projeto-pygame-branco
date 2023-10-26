@@ -27,7 +27,7 @@ class events:
           return False
           # ----- #
       
-      # move mouse
+      # move crosshair
       if event.type == pygame.MOUSEMOTION:
         self.state['mouse_x'], self.state['mouse_y'] = event.pos
       
@@ -40,12 +40,6 @@ class events:
         
     return True
   
-  def inside_rect(m_x, m_y, rect_x, rect_y, rect_w, rect_h):
-    if m_x >= rect_x and \
-    m_x <= rect_x + rect_w and \
-    m_y >= rect_y and \
-    m_y <= rect_y + rect_h:
-      return True
-    return False
+
     
     

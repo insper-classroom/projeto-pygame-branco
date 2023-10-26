@@ -50,6 +50,7 @@ class game:
         pygame.transform.rotate(target, 35), # 9 
         pygame.transform.rotate(target, -35), # 10
       ],
+      'gun_sr': pygame.image.load('assets/pistol.png'),
       'screen_w': screen_w,
       'screen_h': screen_h,
     }
@@ -74,8 +75,11 @@ class game:
     
   def game_loop(self):
     
+    # fps
+    self.clock.tick(60)
+    
     # import class draw
-    draw_win = draw(self.assets, self.state)
+    draw_win = draw(self.assets, self.state, self.clock)
     
     # main loop
     while self.state['running']:
