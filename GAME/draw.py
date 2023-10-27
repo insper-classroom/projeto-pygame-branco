@@ -22,9 +22,6 @@ class draw:
     
     # makes the bullet mark and smoke appear for a certain amount of time 
     self.last_shoot_time = -1
-    
-    # position of the target (x, y, w, h)
-    self.target_info = (0, 0, 0, 0)
      
   
   def draw_sr(self, screen):
@@ -41,7 +38,7 @@ class draw:
     
     self.cronometer += self.clock.get_time()
     
-    target_time = self.cronometer // 1000
+    target_time = self.cronometer // 1500
     
     shoot_time = self.cronometer // 200
     
@@ -73,14 +70,14 @@ class draw:
     # behind pillars and cars
     if self.random_number >= 0 and self.random_number <= 4:
       screen.blit(target_list[self.random_number][0], target_list[self.random_number][1])
-      self.target_info = (target_list[self.random_number][1][0], target_list[self.random_number][1][1], 55, 77)
+      self.state['target_info'] = pygame.Rect(target_list[self.random_number][1][0], target_list[self.random_number][1][1], 55, 77)
     
     screen.blit(self.assets['pillars_sr'], (0, 0))
     
     # on top 
     if self.random_number > 4 and self.random_number <= 10:
       screen.blit(target_list[self.random_number][0], target_list[self.random_number][1])
-      self.target_info = (target_list[self.random_number][1][0], target_list[self.random_number][1][1], 55, 77)
+      self.state['target_info'] = pygame.Rect(target_list[self.random_number][1][0], target_list[self.random_number][1][1], 55, 77)
      
     
     screen.blit(self.assets['cars_sr'], (100, 100))
@@ -118,6 +115,7 @@ class draw:
     
     
     # POINTS - Luise
+    
     
     pygame.display.update()
     

@@ -27,6 +27,7 @@ class game:
     target = pygame.transform.scale(pygame.image.load('assets/alvo.png'), (55, 77))
     
     self.assets = {
+      
       'background_sr': pygame.transform.scale(pygame.image.load('assets/fundo_shootingrange.png'), (screen_w + 100, screen_h + 155)),
       'pillars_sr': pygame.transform.scale(pygame.image.load('assets/shooting_range.png'), (screen_w + 100, screen_h - 200)),
       'box_sr': pygame.transform.scale(pygame.image.load('assets/box.png'), (screen_w + 100, 179 + 50)),
@@ -55,6 +56,7 @@ class game:
       'bang_mark': pygame.transform.scale(pygame.image.load('assets/marca_tiro.png'), (10, 10)),
       'screen_w': screen_w,
       'screen_h': screen_h,
+      
     }
     # assets ---------------------------- #
     
@@ -66,8 +68,8 @@ class game:
     'running': True,
     
     # mouse positioning
-    'mouse_x': screen_w // 2,
-    'mouse_y': screen_h // 2,
+    'mouse_x': 0,
+    'mouse_y': 0,
     
     # True == sr has started
     'sr_started': False,
@@ -75,7 +77,14 @@ class game:
     # if player shoots, fired = True
     'fired': False,
     'fired_mark': False,
-    'fired_pos':(0, 0)
+    'fired_pos':(0, 0),
+    
+    # where the target is 
+    'target_info': (0, 0, 55, 77),
+    
+    # player_points 
+    'points_sr': 0,
+    
     }
     # state ----------------------------- #
     
@@ -91,7 +100,7 @@ class game:
     while self.state['running']:
       
       # import class events
-      loop = events(self.assets, self.state, self.clock, draw_win.target_info)
+      loop = events(self.assets, self.state, self.clock)
       
       # draw window
       draw_win.draw_sr(self.screen)
