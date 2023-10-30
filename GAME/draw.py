@@ -30,10 +30,7 @@ class draw:
     if self.state['sr_started']:
       pass
     
-    
-    
-    
-    
+  
     mouse_pos_x, mouse_pos_y = self.state['fired_pos']
     
     self.cronometer += self.clock.get_time()
