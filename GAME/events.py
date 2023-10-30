@@ -1,7 +1,5 @@
 import pygame
 
-
-
 class events:
   
   def __init__(self, assets, state, clock):
@@ -45,6 +43,7 @@ class events:
 
           if self.state['target_info'].collidepoint(event.pos):
             print('ACERTOU')
+            self.state['points_sr'] += 1 
           
     return True
 

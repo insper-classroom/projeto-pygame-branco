@@ -112,7 +112,12 @@ class draw:
     
     
     # POINTS - Luise
-    
+    font = pygame.font.Font(None, 36)
+    points = self.state['points_sr']
+    points_text = font.render(f'Points: {points}', True, white)
+    points_rect = points_text.get_rect()
+    points_rect.topleft = (10, 10)
+    screen.blit(points_text, points_rect)
     
     pygame.display.update()
 

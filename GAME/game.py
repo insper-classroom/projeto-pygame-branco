@@ -83,7 +83,7 @@ class game:
     'target_info': (0, 0, 55, 77),
     
     # player_points 
-    'points_sr': 0,
+    'points_sr': 0
     
     }
     # state ----------------------------- #
