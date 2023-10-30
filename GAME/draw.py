@@ -115,10 +115,6 @@ class draw:
     
     
     pygame.display.update()
-    
-    
-  def draw_house(self, assets, state, clock):  # luise
-    pygame.display.update()
-    
+
     
   
