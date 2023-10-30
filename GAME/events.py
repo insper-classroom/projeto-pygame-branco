@@ -26,6 +26,10 @@ class events:
       
       # if player kills game 
       if event.type == pygame.KEYDOWN:
+        
+        if event.key == pygame.K_RETURN:
+          self.state['initial_screen'] = True 
+
         if event.key == pygame.K_ESCAPE:
           return False
           # ----- #

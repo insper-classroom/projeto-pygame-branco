@@ -38,6 +38,7 @@ class game:
       'button_on': pygame.image.load('assets/botao_on.png'),
       'press_w': pygame.transform.scale(pygame.image.load('assets/press_w.png'), (177, 153)),
       'button': pygame.image.load('assets/botao_off.png'),
+      'tela_inicial': pygame.transform.scale(pygame.image.load('assets/home_screen.png'), (screen_w + 100, screen_h + 155)),
       'target_sr': [
         pygame.transform.rotate(target, -30), # 0
         target, # 1
@@ -63,6 +64,8 @@ class game:
     
     # state ----------------------------- #
     self.state = {
+
+    'initial_screen': False,
       
     # if running == True, game runs
     'running': True,
@@ -98,15 +101,17 @@ class game:
     
     # main loop
     while self.state['running']:
-      
       # import class events
       loop = events(self.assets, self.state, self.clock)
-      
-      # draw window
-      draw_win.draw_sr(self.screen)
-      
+
       # while running == True, loop runs
       self.state['running'] = loop.all_events()
+        
+      # draw window
+      if self.state['initial_screen'] == False:
+        draw_win.draw_initial_screen(self.screen)
+      else:
+        draw_win.draw_sr(self.screen)
 
 
 # run the game

@@ -24,13 +24,18 @@ class draw:
     self.last_shoot_time = -1
      
   
-  def draw_sr(self, screen):
+  #tela inicial Luise 
+  def draw_initial_screen(self, screen):
+    screen.blit(self.assets['tela_inicial'], (0, 0))
+    pygame.display.update()
     
+  
+  def draw_sr(self, screen):
+
     # implementar o start do game
     if self.state['sr_started']:
       pass
     
-  
     mouse_pos_x, mouse_pos_y = self.state['fired_pos']
     
     self.cronometer += self.clock.get_time()
@@ -38,7 +43,6 @@ class draw:
     target_time = self.cronometer // 1500
     
     shoot_time = self.cronometer // 200
-    
     
     if self.last_target_time != target_time:
       self.random_number = randint(0, 10)
@@ -109,7 +113,6 @@ class draw:
       self.state['fired'] = False
       self.state['fired_mark'] = False
     self.last_shoot_time = shoot_time
-    
     
     # POINTS - Luise
     font = pygame.font.Font(None, 36)
