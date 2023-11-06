@@ -22,33 +22,11 @@ class draw:
     
     # makes the bullet mark and smoke appear for a certain amount of time 
     self.last_shoot_time = -1
-     
-  
-  #tela inicial Luise 
-  def draw_initial_screen(self, screen):
-    screen.blit(self.assets['tela_inicial'], (0, 0))
-    pygame.display.update()
     
-  
-  def draw_sr(self, screen):
-
-    # implementar o start do game
-    if self.state['sr_started']:
-      pass
     
-    mouse_pos_x, mouse_pos_y = self.state['fired_pos']
     
-    self.cronometer += self.clock.get_time()
-    
-    target_time = self.cronometer // 1500
-    
-    shoot_time = self.cronometer // 200
-    
-    if self.last_target_time != target_time:
-      self.random_number = randint(0, 10)
-    self.last_target_time = target_time
-    
-    target_list = [
+    # targets organized
+    self.target_list = [
       (self.assets['target_sr'][0], (770, 520)),  
       (self.assets['target_sr'][6], (200, 520)),
       (self.assets['target_sr'][7], (450, 460)), 
@@ -61,6 +39,37 @@ class draw:
       (self.assets['target_sr'][4], (35, 250)), 
       (self.assets['target_sr'][5], (1500, 220)),
     ]
+  
+    self.target = self.target_list[self.random_number][0]
+  
+  
+  def draw_initial_screen(self, screen):
+    screen.blit(self.assets['tela_inicial'], (0, 0))
+    
+    # press w to start shootingrange
+    if not self.state['sr_started']:
+      screen.blit(self.assets['press_w'], (70, 500))
+      
+    pygame.display.update()
+    
+  
+  def draw_sr(self, screen):
+    
+    mouse_pos_x, mouse_pos_y = self.state['fired_pos']
+    
+    self.cronometer += self.clock.get_time()
+    
+    target_time = self.cronometer // 750
+    
+    shoot_time = self.cronometer // 200
+    
+    target_list = self.target_list
+    
+    if self.last_target_time != target_time:
+      self.random_number = randint(0, 10)
+      self.state['hit'] = False
+    self.last_target_time = target_time
+    
     
     screen.fill(black)
 
@@ -69,27 +78,29 @@ class draw:
     screen.blit(self.assets['props_sr'], (485, 410))
     
     # behind pillars and cars
-    if self.random_number >= 0 and self.random_number <= 4:
-      screen.blit(target_list[self.random_number][0], target_list[self.random_number][1])
-      self.state['target_info'] = pygame.Rect(target_list[self.random_number][1][0], target_list[self.random_number][1][1], 55, 77)
-    
+    if self.state['hit'] == False:
+      if self.random_number >= 0 and self.random_number <= 4:
+      
+        screen.blit(target_list[self.random_number][0], target_list[self.random_number][1])
+        self.state['target_info'] = pygame.Rect(target_list[self.random_number][1][0], target_list[self.random_number][1][1], 55, 77)
+      
+      
     screen.blit(self.assets['pillars_sr'], (0, 0))
     
     # on top 
-    if self.random_number > 4 and self.random_number <= 10:
-      screen.blit(target_list[self.random_number][0], target_list[self.random_number][1])
-      self.state['target_info'] = pygame.Rect(target_list[self.random_number][1][0], target_list[self.random_number][1][1], 55, 77)
+    if self.state['hit'] == False:
+      if self.random_number > 4 and self.random_number <= 10:
+      
+        screen.blit(target_list[self.random_number][0], target_list[self.random_number][1])
+        self.state['target_info'] = pygame.Rect(target_list[self.random_number][1][0], target_list[self.random_number][1][1], 55, 77)
+      
      
-    
     screen.blit(self.assets['cars_sr'], (100, 100))
     screen.blit(self.assets['box_sr'], (0, self.assets['screen_h'] - 179))
     
     # buttons 
     screen.blit(self.assets['button'], (0, 675))
     
-    # press w to start shootingrange
-    if not self.state['sr_started']:
-      screen.blit(self.assets['press_w'], (70, 500))
     
     # crosshair
     screen.blit(self.assets['crosshair'], (self.state['mouse_x'] - 26, self.state['mouse_y'] - 31))
@@ -114,7 +125,7 @@ class draw:
       self.state['fired_mark'] = False
     self.last_shoot_time = shoot_time
     
-    # POINTS - Luise
+    # POINTS 
     font = pygame.font.Font(None, 36)
     points = self.state['points_sr']
     points_text = font.render(f'Points: {points}', True, white)
@@ -123,6 +134,17 @@ class draw:
     screen.blit(points_text, points_rect)
     
     pygame.display.update()
-
     
-  
+    
+  def draw_final_screen(self, screen):
+    
+    screen.fill(black)
+    
+    
+    font = pygame.font.Font(None, 70)
+    parabens_text = font.render('PARABÉNS', True, white)
+    parabens_rect = parabens_text.get_rect()
+    parabens_rect.topleft = (650, 200)
+    screen.blit(parabens_text, parabens_rect)
+    
+    pygame.display.update()

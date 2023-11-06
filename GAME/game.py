@@ -81,7 +81,7 @@ class game:
     'fired': False,
     'fired_mark': False,
     'fired_pos':(0, 0),
-    
+    'hit': False,
     # where the target is 
     'target_info': (0, 0, 55, 77),
     
@@ -108,16 +108,18 @@ class game:
       self.state['running'] = loop.all_events()
         
       # draw window
-      if self.state['initial_screen'] == False:
-        draw_win.draw_initial_screen(self.screen)
+      if self.state['points_sr'] < 20:
+      
+        if self.state['initial_screen'] == False:
+          draw_win.draw_initial_screen(self.screen)
+        else:
+          draw_win.draw_sr(self.screen)
+      
       else:
-        draw_win.draw_sr(self.screen)
-
-
+        draw_win.draw_final_screen(self.screen)
+      
 # run the game
 
 run = game()
 
 run.game_loop()
-
-
