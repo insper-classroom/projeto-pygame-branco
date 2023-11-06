@@ -38,7 +38,7 @@ class game:
       'button_on': pygame.image.load('assets/botao_on.png'),
       'press_w': pygame.transform.scale(pygame.image.load('assets/press_w.png'), (177, 153)),
       'button': pygame.image.load('assets/botao_off.png'),
-      'tela_inicial': pygame.transform.scale(pygame.image.load('assets/home_screen.png'), (screen_w + 100, screen_h + 155)),
+      'tela_inicial': pygame.transform.scale(pygame.image.load('assets/mira_vesga.png'), (screen_w + 100, screen_h + 155)),
       'target_sr': [
         pygame.transform.rotate(target, -30), # 0
         target, # 1

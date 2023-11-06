@@ -27,17 +27,30 @@ class events:
       # if player kills game 
       if event.type == pygame.KEYDOWN:
         
-        if event.key == pygame.K_RETURN:
+        if event.key == pygame.K_w:
           self.state['initial_screen'] = True 
+          self.assets['button'] = self.assets['button_on']
+          self.state['sr_started'] = True
 
         if event.key == pygame.K_ESCAPE:
           return False
           # ----- #
+    
+
+
+      # if event.type == pygame.KEYDOWN:
+        
+      #   if event.key == pygame.K_w:
+      #     self.state['initial_screen'] = True 
+
+      #   if event.key == pygame.K_ESCAPE:
+      #     return False
+      #     # ----- #
       
-      if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_w:
-          self.assets['button'] = self.assets['button_on']
-          self.state['sr_started'] = True
+      # if event.type == pygame.KEYDOWN:
+      #   if event.key == pygame.K_w:
+      #     self.assets['button'] = self.assets['button_on']
+      #     self.state['sr_started'] = True
         
       if event.type == pygame.MOUSEBUTTONDOWN:
         if event.button == 1:
