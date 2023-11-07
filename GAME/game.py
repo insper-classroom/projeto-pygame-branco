@@ -51,7 +51,7 @@ class game:
         pygame.transform.rotate(target, 35), # 7
         target, # 8
         pygame.transform.rotate(target, 35), # 9 
-        pygame.transform.rotate(target, -35), # 10
+        target, # 10
         # hostage, # 11
         # hostage, # 12
         # hostage, # 13
@@ -95,7 +95,9 @@ class game:
     # player_points 
     'points_sr': 0,
     
-    'end_game': False
+    'end_game': False,
+    
+    'restart': False
     
     }
     # state ----------------------------- #
@@ -126,6 +128,10 @@ class game:
       
       else:
         draw_win.draw_final_screen(self.screen)
+        if self.state['restart'] == True:
+          run = game()
+
+          run.game_loop()
       
 # run the game
 

@@ -31,14 +31,14 @@ class draw:
       (self.assets['target_sr'][6], (200, 520)),
       (self.assets['target_sr'][7], (450, 460)),    # bottom
       (self.assets['target_sr'][9], (1060, 450)),
-      (self.assets['target_sr'][10], (1345, 480)), # --- # 
+      (self.assets['target_sr'][10], (1400, 480)), # --- # 
       
       (self.assets['target_sr'][8], (980, 600)),
       (self.assets['target_sr'][1], (550, 200)), 
       (self.assets['target_sr'][2], (800, 230)),    # top
       (self.assets['target_sr'][3], (950, 220)), 
       (self.assets['target_sr'][4], (35, 250)), 
-      (self.assets['target_sr'][5], (1500, 220)), # --- #
+      (self.assets['target_sr'][5], (1500, 250)), # --- #
       
       # (self.assets['target_sr'][11], (1, 2)),                     
       # (self.assets['target_sr'][12], (1, 2)),                     
@@ -64,7 +64,7 @@ class draw:
     
     cronometer = (self.cronometer / 1000)
     
-    if cronometer > 1 and cronometer < 31:
+    if cronometer > 10 and cronometer < 31:
       self.state['end_game'] = True
     
     

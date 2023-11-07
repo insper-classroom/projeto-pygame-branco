@@ -1,5 +1,6 @@
 import pygame
 
+
 class events:
   
   def __init__(self, assets, state, clock):
@@ -30,13 +31,8 @@ class events:
             self.state['initial_screen'] = True 
             self.assets['button'] = self.assets['button_on']
             self.state['sr_started'] = True
-      else:      
-        # if player kills game 
-        if event.type == pygame.KEYDOWN:
-
-          if event.key == pygame.K_ESCAPE:
-            return False
-            # ----- #
+            
+      if self.state['end_game'] == False:    
 
         if event.type == pygame.MOUSEBUTTONDOWN:
           if event.button == 1:
@@ -48,7 +44,13 @@ class events:
               self.state['hit'] = True
               self.state['points_sr'] += 1 
 
-
+      else:
+        
+        if event.type == pygame.KEYDOWN:
+          if event.key == pygame.K_ESCAPE: 
+            self.state['restart'] = True
+            
+            
     return True
 
 
