@@ -29,15 +29,22 @@ class draw:
     self.target_list = [
       (self.assets['target_sr'][0], (770, 520)),  
       (self.assets['target_sr'][6], (200, 520)),
-      (self.assets['target_sr'][7], (450, 460)), 
+      (self.assets['target_sr'][7], (450, 460)),    # bottom
       (self.assets['target_sr'][9], (1060, 450)),
-      (self.assets['target_sr'][10], (1345, 480)),
+      (self.assets['target_sr'][10], (1345, 480)), # --- # 
+      
       (self.assets['target_sr'][8], (980, 600)),
       (self.assets['target_sr'][1], (550, 200)), 
-      (self.assets['target_sr'][2], (800, 230)), 
+      (self.assets['target_sr'][2], (800, 230)),    # top
       (self.assets['target_sr'][3], (950, 220)), 
       (self.assets['target_sr'][4], (35, 250)), 
-      (self.assets['target_sr'][5], (1500, 220)),
+      (self.assets['target_sr'][5], (1500, 220)), # --- #
+      
+      # (self.assets['target_sr'][11], (1, 2)),                     
+      # (self.assets['target_sr'][12], (1, 2)),                     
+      # (self.assets['target_sr'][13], (1, 2)),   # hostages
+      # (self.assets['target_sr'][14], (1, 2)),
+      # (self.assets['target_sr'][15], (1, 2)),
     ]
   
     self.target = self.target_list[self.random_number][0]
@@ -54,6 +61,12 @@ class draw:
     
   
   def draw_sr(self, screen):
+    
+    cronometer = (self.cronometer / 1000)
+    
+    if cronometer > 1 and cronometer < 31:
+      self.state['end_game'] = True
+    
     
     mouse_pos_x, mouse_pos_y = self.state['fired_pos']
     
@@ -125,7 +138,7 @@ class draw:
       self.state['fired_mark'] = False
     self.last_shoot_time = shoot_time
     
-    # POINTS 
+    # POINTS and 30s
     font = pygame.font.Font(None, 36)
     points = self.state['points_sr']
     points_text = font.render(f'Points: {points}', True, white)
@@ -133,18 +146,31 @@ class draw:
     points_rect.topleft = (10, 10)
     screen.blit(points_text, points_rect)
     
+    seconds_text = font.render(f'{cronometer:.2f}', True, white)
+    seconds_rect = seconds_text.get_rect()
+    seconds_rect.topleft = (10, 40)
+    screen.blit(seconds_text, seconds_rect)
+    
     pygame.display.update()
     
     
   def draw_final_screen(self, screen):
     
-    screen.fill(black)
+    screen.fill(gray)
     
+    points = self.state['points_sr']
     
     font = pygame.font.Font(None, 70)
     parabens_text = font.render('PARABÉNS', True, white)
     parabens_rect = parabens_text.get_rect()
     parabens_rect.topleft = (650, 200)
     screen.blit(parabens_text, parabens_rect)
+    
+    points_text = font.render(f'sua pontuação foi: {points}', True, white)
+    points_rect = points_text.get_rect()
+    points_rect.topleft = (550, 250)
+    screen.blit(points_text, points_rect)
+    
+    screen.blit(self.assets['player'], (100, 50))
     
     pygame.display.update()
