@@ -25,6 +25,7 @@ class game:
     # assets ---------------------------- #
     
     target = pygame.transform.scale(pygame.image.load('assets/alvo.png'), (55, 77))
+    # hostage = pygame.transform.scale(pygame.image.load('assets/refem.png'), (55, 77))
     
     self.assets = {
       
@@ -51,10 +52,16 @@ class game:
         target, # 8
         pygame.transform.rotate(target, 35), # 9 
         pygame.transform.rotate(target, -35), # 10
+        # hostage, # 11
+        # hostage, # 12
+        # hostage, # 13
+        # hostage, # 14
+        # hostage, # 15
       ],
       'gun_sr': pygame.image.load('assets/pistol.png'),
       'bang': pygame.image.load('assets/tiro.png'),
       'bang_mark': pygame.transform.scale(pygame.image.load('assets/marca_tiro.png'), (10, 10)),
+      'player': pygame.image.load('assets/player.png'),
       'screen_w': screen_w,
       'screen_h': screen_h,
       
@@ -86,7 +93,9 @@ class game:
     'target_info': (0, 0, 55, 77),
     
     # player_points 
-    'points_sr': 0
+    'points_sr': 0,
+    
+    'end_game': False
     
     }
     # state ----------------------------- #
@@ -108,7 +117,7 @@ class game:
       self.state['running'] = loop.all_events()
         
       # draw window
-      if self.state['points_sr'] < 20:
+      if self.state['end_game'] == False:
       
         if self.state['initial_screen'] == False:
           draw_win.draw_initial_screen(self.screen)
