@@ -8,30 +8,90 @@ html, body {
     scroll-behavior: smooth; 
 }
 
-.centered {
-    text-align: center;
-    margin: 0 auto;
-}
-
 #contact {
+    background-color: #f2f2f2;
+    padding: 30px;
     text-align: center;
-    padding: 20px;
-    background-color: #929079;
-    color: #000;
-    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    margin: 20px; 
+    align-items: center;
+    justify-content: center;
 }
 
-#contact img {
-    width: 20px;
-    height: auto;
-    vertical-align: middle;
+.creator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+.creator h3 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.creator p {
+    margin: 10px 0;
+    color: #333; /* Cor do texto */
+}
+
+.creator a.whatsapp img,
+.creator a.email img,
+.creator a.instagram-logo img,
+.creator a.linkedin-logo img {
+    width: 30px;
+    height: 30px;
     margin-right: 5px;
+    vertical-align: middle;
+}
+
+.creator a.whatsapp,
+.creator a.email,
+.creator a.instagram-logo,
+.creator a.linkedin-logo {
+    color: #333;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 18px;
+    color: #333; 
+}
+
+p {
+    margin: 0px 0;
+}
+
+.creator a {
+    text-decoration: none;
+    color: #333; 
+}
+
+.creator img {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.creator a:hover {
+    color: #007bff;
 }
 
 .sniper img {
     display: block;
     margin: 0 auto;
-    max-width: 30%;
+    max-width: 40%;
     height: auto;
     border: 9px solid #ff000080;
 }
@@ -124,3 +184,35 @@ footer {
     color: #fff;
 }
 
+
+.portfolio-button {
+    display: inline-block;
+    background-color: #929079; 
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0 auto; 
+}
+
+.portfolio-button:hover {
+    background-color: #ff000080; 
+}
+
+.portfolio{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fotos{
+    display:flex; 
+    flex-direction: row;
+}
+
+.imagem_luise{
+    width: 70%;
+    margin-bottom: 20px;
+}
