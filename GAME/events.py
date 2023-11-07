@@ -15,6 +15,7 @@ class events:
   
     self.clock = clock
     
+    
   def all_events(self):
     
     # move crosshair 
@@ -22,46 +23,32 @@ class events:
     
     # all events
     for event in pygame.event.get():  
-      print(event)
-      
-      # if player kills game 
-      if event.type == pygame.KEYDOWN:
-        
-        if event.key == pygame.K_w:
-          self.state['initial_screen'] = True 
-          self.assets['button'] = self.assets['button_on']
-          self.state['sr_started'] = True
 
-        if event.key == pygame.K_ESCAPE:
-          return False
-          # ----- #
-    
+      if self.state['initial_screen'] == False:
+        if event.type == pygame.KEYDOWN:
+          if event.key == pygame.K_w:
+            self.state['initial_screen'] = True 
+            self.assets['button'] = self.assets['button_on']
+            self.state['sr_started'] = True
+      else:      
+        # if player kills game 
+        if event.type == pygame.KEYDOWN:
+
+          if event.key == pygame.K_ESCAPE:
+            return False
+            # ----- #
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+          if event.button == 1:
+            self.state['fired'] = True
+            self.state['fired_mark'] = True
+            self.state['fired_pos'] = event.pos
+
+            if self.state['target_info'].collidepoint(event.pos):
+              self.state['hit'] = True
+              self.state['points_sr'] += 1 
 
 
-      # if event.type == pygame.KEYDOWN:
-        
-      #   if event.key == pygame.K_w:
-      #     self.state['initial_screen'] = True 
-
-      #   if event.key == pygame.K_ESCAPE:
-      #     return False
-      #     # ----- #
-      
-      # if event.type == pygame.KEYDOWN:
-      #   if event.key == pygame.K_w:
-      #     self.assets['button'] = self.assets['button_on']
-      #     self.state['sr_started'] = True
-        
-      if event.type == pygame.MOUSEBUTTONDOWN:
-        if event.button == 1:
-          self.state['fired'] = True
-          self.state['fired_mark'] = True
-          self.state['fired_pos'] = event.pos
-
-          if self.state['target_info'].collidepoint(event.pos):
-            print('ACERTOU')
-            self.state['points_sr'] += 1 
-          
     return True
 
 
