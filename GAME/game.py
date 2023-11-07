@@ -25,7 +25,7 @@ class game:
     # assets ---------------------------- #
     
     target = pygame.transform.scale(pygame.image.load('assets/alvo.png'), (55, 77))
-    # hostage = pygame.transform.scale(pygame.image.load('assets/refem.png'), (55, 77))
+    hostage = pygame.transform.scale(pygame.image.load('assets/refem.png'), (55, 77))
     
     self.assets = {
       
@@ -37,26 +37,24 @@ class game:
       'crosshair': pygame.image.load('assets/crosshair.png'),
       'button_off': pygame.image.load('assets/botao_off.png'),
       'button_on': pygame.image.load('assets/botao_on.png'),
-      'press_w': pygame.transform.scale(pygame.image.load('assets/press_w.png'), (177, 153)),
       'button': pygame.image.load('assets/botao_off.png'),
       'tela_inicial': pygame.transform.scale(pygame.image.load('assets/mira_vesga.png'), (screen_w + 100, screen_h + 155)),
       'target_sr': [
-        pygame.transform.rotate(target, -30), # 0
-        target, # 1
-        target, # 2
-        target, # 3
-        target, # 4
-        target, # 5
-        pygame.transform.rotate(target, -15), # 6
-        pygame.transform.rotate(target, 35), # 7
-        target, # 8
-        pygame.transform.rotate(target, 35), # 9 
-        target, # 10
-        # hostage, # 11
-        # hostage, # 12
-        # hostage, # 13
-        # hostage, # 14
-        # hostage, # 15
+        [pygame.transform.rotate(target, -30), False], # 0
+        [target, False], # 1
+        [target, False], # 2
+        [target, False], # 3
+        [target, False], # 4
+        [target, False], # 5
+        [pygame.transform.rotate(target, -15), False], # 6
+        [pygame.transform.rotate(target, 35), False], # 7
+        [target, False], # 8
+        [pygame.transform.rotate(target, 35), False], # 9 
+        [target, False], # 10
+        [hostage, True], # 11
+        [hostage, True], # 12
+        [hostage, True], # 13
+        [hostage, True], # 14
       ],
       'gun_sr': pygame.image.load('assets/pistol.png'),
       'bang': pygame.image.load('assets/tiro.png'),
@@ -72,7 +70,10 @@ class game:
     # state ----------------------------- #
     self.state = {
 
-    'initial_screen': False,
+    'initial_screen': True,
+    
+    # player name
+    'user_input': '',
       
     # if running == True, game runs
     'running': True,
@@ -89,6 +90,7 @@ class game:
     'fired_mark': False,
     'fired_pos':(0, 0),
     'hit': False,
+    
     # where the target is 
     'target_info': (0, 0, 55, 77),
     
@@ -121,7 +123,7 @@ class game:
       # draw window
       if self.state['end_game'] == False:
       
-        if self.state['initial_screen'] == False:
+        if self.state['initial_screen'] == True:
           draw_win.draw_initial_screen(self.screen)
         else:
           draw_win.draw_sr(self.screen)
