@@ -47,19 +47,22 @@ class events:
           else:
             self.state['user_input'] += event.unicode
             
-      elif self.state['end_game'] == False:    
+      elif self.state['end_game'] == False:   
+        pygame.mouse.set_visible(False) 
 
         if event.type == pygame.MOUSEBUTTONDOWN:
           if event.button == 1:
             self.state['fired'] = True
             self.state['fired_mark'] = True
             self.state['fired_pos'] = event.pos
+            self.assets['sound'].play()
 
             if self.state['target_info'][0].collidepoint(event.pos):
               self.state['hit'] = True
 
               if self.state['target_info'][1] == False:
                 self.state['points_sr'] += 1 
+                self.assets['sound2'].play()
               
               else:
                 self.state['points_sr'] -= 3
@@ -69,6 +72,7 @@ class events:
         if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_ESCAPE: 
             self.state['restart'] = True
+        
             
             
             

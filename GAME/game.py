@@ -10,7 +10,7 @@ class game:
   def __init__(self):
     pygame.init()
     
-    pygame.mouse.set_visible(False)
+    
     
     # gets the user resolution
     screen_info = pygame.display.Info() 
@@ -29,6 +29,7 @@ class game:
     
     target = pygame.transform.scale(pygame.image.load('assets/alvo.png'), (55, 77))
     hostage = pygame.transform.scale(pygame.image.load('assets/refem.png'), (55, 77))
+    
     
     self.assets = {
       
@@ -65,6 +66,8 @@ class game:
       'player': pygame.image.load('assets/player.png'),
       'screen_w': screen_w,
       'screen_h': screen_h,
+      'sound': pygame.mixer.Sound('assets/tiro.mp3'),
+      'sound2': pygame.mixer.Sound('assets/certo.mp3')
       
     }
     # assets ---------------------------- #
