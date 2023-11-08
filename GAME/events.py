@@ -3,6 +3,8 @@ import pygame
 
 class events:
   
+  '''classe que analiza eventos'''
+  
   def __init__(self, assets, state, clock):
     
     # keys being pressed
@@ -18,6 +20,8 @@ class events:
     
     
   def all_events(self):
+    
+    '''cerebe todos os eventos do jogo e analiza para fazer acoes de acordo'''
     
     # no negative points
     if self.state['points_sr'] < 0:

@@ -4,6 +4,9 @@ from draw import draw
 from events import *
 
 class game:
+  
+  '''inicializa o jogo'''
+  
   def __init__(self):
     pygame.init()
     
@@ -105,6 +108,8 @@ class game:
     # state ----------------------------- #
     
   def game_loop(self):
+    
+    '''loop principal do jogo, carrega a classe desenha e eventos para gerar as interacoes e rodar o jogo'''
     
     # fps
     self.clock.tick(60)

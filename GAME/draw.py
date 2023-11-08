@@ -3,6 +3,11 @@ from constants import *
 from random import *
 
 class draw:
+  '''
+  desenha coisas na tela, cada funcao dessa classe desenha um tipo de tela
+  '''
+  
+  
   
   def __init__(self, assets, state, clock):
     self.assets = assets
@@ -48,6 +53,7 @@ class draw:
   
   
   def draw_initial_screen(self, screen):
+    '''desenha a tela inicial, onde mostra o nome do jogo'''
     
     font = pygame.font.Font(None, 36)
     
@@ -64,6 +70,8 @@ class draw:
   
   def draw_sr(self, screen):
     
+    '''sr significa shooting range, essa funcao desenha esta tela, que é o jogo em si'''
+    
     cronometer = (self.cronometer / 1000)
     
     if cronometer > 20:
@@ -74,7 +82,7 @@ class draw:
     
     self.cronometer += self.clock.get_time()
     
-    target_time = self.cronometer // 800
+    target_time = self.cronometer // 1000
     
     shoot_time = self.cronometer // 200
     
@@ -157,6 +165,8 @@ class draw:
     
     
   def draw_final_screen(self, screen):
+    
+    '''desenha a tela final, onde mostra a pontuacao do jogador'''
     
     screen.fill(gray)
     
